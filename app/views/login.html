@@ -1,0 +1,40 @@
+ <div class="well col-lg-4">
+  <form class="form-horizontal" name="loginForm" novalidate>
+  <fieldset>
+
+    <legend>Logga in</legend>
+
+    <div class="row">
+    <div class="form-group">
+      <div class="col-lg-6">
+            <label class="col-lg-6 control-label">Användarnamn  </label>
+            <input class="form-control" type="text" name="username" ng-model="user.username" placeholder="Användarnamn" required ng-click="deleteMessage()"> <span ng-show="loginForm.username.$dirty && loginForm.username.$invalid">
+      </div>
+    </div>
+    </div>
+    <br>
+
+    <div class="row">
+    <div class="form-group">
+      <div class="col-lg-6">
+            <label class="col-lg-6 control-label">Lösenord</label>
+            <input type="password" class="form-control" name="password" ng-model="user.password" ng-minlength="5" ng-maxlength="20" placeholder="Lösenord" ng-click="deleteMessage()"> <span ng-show="loginForm.password.$dirty && loginForm.password.$invalid">  
+      </div>
+    </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+    <div class="form-group">
+       <div class="col-lg-6 ">
+            <button type="submit" class="btn btn-primary" ng-click="loginForm.$valid && sendForm()">Logga in</button>
+      </div>
+    </div>
+    </div>
+
+
+  </fieldset>
+  </form>
+</div>
+<div>Message:{{message}}</div>
