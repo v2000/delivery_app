@@ -2,14 +2,15 @@
 
 foodMeApp.controller('LoginController',
     function LoginController($scope, $http, $location, UserService) {
+
     console.log('LoginController');
 
 
     $http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(function(data){
        console.log('get user response', data);
-       if(data !== 'false'){
-          data = 'false';
-        }
+      // if(data !== 'false'){
+       //   data = 'false';
+      //  }
         console.log('get user response', data);
         if(data === 'false'){
           $location.path('/login');
@@ -30,6 +31,7 @@ foodMeApp.controller('LoginController',
           console.log('CCCCCCCCC! Your login failed');
           $scope.message = 'Your login failed';
           //$location.path('/login');
+          window.location.reload();
         }
 
 });
@@ -47,6 +49,7 @@ foodMeApp.controller('LoginController',
           console.log('AAAAAAA! Your login failed');
             $scope.message = 'Your login failed';
             //$location.path('/login');
+            window.location.reload();
           }
       });
     };

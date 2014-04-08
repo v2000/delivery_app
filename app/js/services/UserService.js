@@ -6,7 +6,7 @@
 // Demonstrate how to register services
 // In this case it is a simple value service.
 
-  foodMeApp.service('UserService', function(){
+  foodMeApp.service('UserService', function($http){
 
     var user = {
       username: null,

@@ -17,12 +17,22 @@ foodMeApp.controller('CourierAccountController',
         
 
       $http.get('../server/getTodayOrdersData.php').success(function(data){
-      console.log('get orders details', data);
+      
+      $scope.todayOrderData=data;
+      console.log('get orders details', $scope.todayOrderData);
 
-      // clean data so that haschar is a real true or false (not 1 or zero)
-      for(var i = 0; i < data.length; i++){
-        data[i].haschar = !! (data[i].haschar/1);
-      }
+      /*
+ID: "1"
+OrderNummer: "0"
+deliveryAddress: "Main str, 234, 2345 Village"
+deliveryTime: "10.00-11.00"
+optional: "0"
+prodyctName: "Colorfull set"
+quontity: "3"
+      */
+      //for(var i = 0; i < data.length; i++){
+      //  $scope.todayOrderData.push({orderNumber:data.orderNumber, productName:data.productName});
+      //}
       });
      
     /* 
@@ -35,5 +45,14 @@ foodMeApp.controller('CourierAccountController',
         $http.post('../server/profile.php', dataToServer);
       };
     });*/
+
+
+    $scope.showDetails = function() {
+
+    };
+
+    $scope.showMap = function() {
+
+    }
   });
 
