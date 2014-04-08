@@ -5,8 +5,8 @@ foodMeApp.controller('CourierAccountController',
     //$('.menu1').show();
     //$("html").removeAttr("id");
   
-$http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(function(data){
- //       console.log('get user response', data);
+        $http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(function(data){
+
         if(data === 'false'){
           $location.path('/login');
         }
@@ -14,17 +14,18 @@ $http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(functi
         $scope.username = data1;
         console.log("CourierAccount",$scope.username);
       });
+        
 
-
-     
-    /*$http.get('../server/getChars.php').success(function(data){
-      console.log('getChars', data);
+      $http.get('../server/getTodayOrdersData.php').success(function(data){
+      console.log('get orders details', data);
 
       // clean data so that haschar is a real true or false (not 1 or zero)
       for(var i = 0; i < data.length; i++){
         data[i].haschar = !! (data[i].haschar/1);
       }
-      
+      });
+     
+    /* 
       // put the data in the scope as characteristics
       $scope.characteristics = data;
 
