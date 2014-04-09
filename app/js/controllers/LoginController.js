@@ -7,10 +7,10 @@ foodMeApp.controller('LoginController',
 
 
     $http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(function(data){
-       console.log('get user response', data);
-       if(data !== 'false'){
-          data = 'false';
-        }
+      // console.log('get user response', data);
+      // if(data !== 'false'){
+      //    data = 'false';
+      //  }
         console.log('get user response', data);
         if(data === 'false'){
           $location.path('/login');

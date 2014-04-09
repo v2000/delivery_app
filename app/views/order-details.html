@@ -1,7 +1,5 @@
-<center><h2>It is your order details {{username}}</h2></center>
-
-<img src="путь к файлу" alt="альтернативный текст"> 
-
+<h3>{{username}}</h3>
+<h2>It is details for order number {{username}}:</h2>
 <!-- Forms
       ================================================== -->
       <div class="bs-docs-section">
@@ -13,16 +11,27 @@
               <form class="form-horizontal">
                 <fieldset>
                   <legend>Order details:</legend>
+
                   <div class="form-group">
-                    <label for="inputEmail" class="col-lg-2 control-label">It is your order details {{username}}</label>
-                    
+                    <img src="путь к файлу" alt="альтернативный текст">     
                   </div>
+                  
+                  <br><br>
+
                   <div class="form-group">
-                    <label for="inputPassword" class="col-lg-2 control-label">It is your order details {{username}}</label>
-                    
+                    <label for="inputEmail">It is your order details {{username}}</label>    
                   </div>
+
+                  <br><br>
+
                   <div class="form-group">
-                    <label for="textArea" class="col-lg-2 control-label">Extra info:</label>
+                    <label for="inputPassword">It is your order details {{username}}</label>             
+                  </div>
+
+                  <br><br>
+
+                  <div class="form-group">
+                    <label for="textArea">Extra info:</label>
                     <div class="col-lg-10">
                       <textarea class="form-control" rows="3" id="textArea"></textarea>
                       <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
@@ -31,7 +40,7 @@
                   
              
                   <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
+                    <div class="col-lg-10 col-lg-offset-12">
                       <button class="btn btn-default">Cancel</button>
                       <button type="submit" class="btn btn-primary">Done</button>
                     </div>

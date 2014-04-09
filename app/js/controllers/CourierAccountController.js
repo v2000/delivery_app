@@ -58,14 +58,5 @@ quontity: "3"
         $http.post('../server/profile.php', dataToServer);
       };
     });*/
-
-
-    $scope.showDetails = function() {
-
-    };
-
-    $scope.showMap = function() {
-
-    }
   });
 

@@ -2,17 +2,10 @@
 
 var foodMeApp = angular.module('foodMeApp', ['ngResource']);
 
-
-
-foodMeApp.config(function ($locationProvider) {
+foodMeApp.config(function ($routeProvider, $locationProvider) {
+ $locationProvider.hashPrefix('!');
  $locationProvider.html5Mode(true);
-})
-
-
-
-.config(function($routeProvider) {
-
-  $routeProvider.
+ $routeProvider.
    /*when('/', {
         controller: 'LoginController',
         templateUrl: 'views/login.html'
@@ -25,17 +18,25 @@ foodMeApp.config(function ($locationProvider) {
         controller: 'CourierAccountController',
         templateUrl: 'views/courier-account.html'
       }).
-      when('/logout', {
-        controller: 'LogoutController',
-        templateUrl: 'views/logout.html'
+        when("/courier-account/order/:id", { 
+          controller: "OrderDetailsController",
+          templateUrl: "views/order-details.html" 
       }).
-       when('/order-details', {
+         when("/courier-account/map/:id", { 
+          controller: "MapController",
+          templateUrl: "views/map.html" 
+      }).
+    /*   when('/order-details', {
         controller: 'OrderDetailsController',
         templateUrl: 'views/order-details.html'
-      }).
+      }).*/
         when('/map', {
         controller: 'MapController',
         templateUrl: 'views/map.html'
+      }).
+         when('/logout', {
+        controller: 'LogoutController',
+        templateUrl: 'views/logout.html'
       }).
         otherwise({
           redirectTo: '/login'
