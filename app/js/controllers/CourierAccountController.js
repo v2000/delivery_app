@@ -21,6 +21,19 @@ foodMeApp.controller('CourierAccountController',
       $scope.todayOrderData=data;
       console.log('get orders details', $scope.todayOrderData);
 
+      for (var i = 0; i < $scope.todayOrderData.length; i++) {
+        $scope.todayOrderData[i] = {ID:$scope.todayOrderData[i].ID, OrderNummer:$scope.todayOrderData[i].OrderNummer, 
+          prodyctName:$scope.todayOrderData[i].prodyctName, quontity:$scope.todayOrderData[i].quontity,
+          deliveryTime:$scope.todayOrderData[i].deliveryTime,
+          deliveryAddress:$scope.todayOrderData[i].deliveryAddress, 
+          optional:$scope.todayOrderData[i].optional, done:$scope.todayOrderData[i].done};
+      };
+
+
+      for (var i = 0; i < $scope.todayOrderData.length; i++) {
+        console.log("QQQ",$scope.todayOrderData[i]);
+      };
+
       /*
 ID: "1"
 OrderNummer: "0"

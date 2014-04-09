@@ -15,24 +15,27 @@
                   <tr>
                     <th>#</th>
                     <th>Order number</th>
-                    <th>Order name</th>
+                    <th>Product name</th>
+                    <th>Quontity</th>
                     <th>Time</th>
-                    <th>Distance</th>
                     <th>Address</th>
                     <th>Details</th>
                     <th>Map</th>
+                    <th>Done</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
+
+                  <tr ng-repeat="todayOrderData in todayOrderData" type="none">
+                    <td ><span>{{todayOrderData.ID}}</span></td>  
+                    <td><span>{{todayOrderData.OrderNummer}}</span></td>
+                    <td><span>{{todayOrderData.prodyctName}}</span></td>
+                    <td><span>{{todayOrderData.quontity}}</span></td>
+                    <td><span>{{todayOrderData.deliveryTime}}</span></td>
+                    <td><span>{{todayOrderData.deliveryAddress}}</span></td>
                     <td><button type="button" class="btn btn-default">Order details</button></td>
                     <td><button type="button" class="btn btn-default">Map</button></td>
+                    <td><span>{{todayOrderData.done}}</span></td>
                   </tr>
                  
                   
@@ -43,3 +46,12 @@
         </div>
       </div>
 
+
+
+    
+                        
+                      
+                            
+                  
+                        
+                     
