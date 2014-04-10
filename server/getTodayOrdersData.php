@@ -33,3 +33,6 @@ $sql = "DELETE * FROM PERSONS WHERE firstName='Erik'";
 $query = $myPDO->prepare($sql);
 $query->execute();
 */
+
+
+
