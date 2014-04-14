@@ -1,6 +1,6 @@
 'use strict';
 
-var foodMeApp = angular.module('foodMeApp', ['ngResource']);
+var foodMeApp = angular.module('foodMeApp', ['ngResource']);//, 'google-maps']);
 
 foodMeApp.config(function ($routeProvider, $locationProvider) {
  $locationProvider.hashPrefix('!');

@@ -2,8 +2,13 @@
 
 foodMeApp.controller('MapController',
     function MapController($scope, $http, UserService, $location, aService) {
-    //$('.menu1').show();
-    //$("html").removeAttr("id");
+    $scope.map = {
+    center: {
+        latitude: 45,
+        longitude: -73
+    },
+    zoom: 8
+};
   
 $http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(function(data){
  //       console.log('get user response', data);
