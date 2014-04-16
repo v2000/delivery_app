@@ -7,6 +7,7 @@ foodMeApp.controller('MapController',
  $scope.map;
 
 var geocoder;
+var map;
 
 $scope.initialize = function() {
   console.log("initialize initialize initialize");
@@ -14,7 +15,7 @@ $scope.initialize = function() {
   var latlng = new google.maps.LatLng(-34.397, 150.644);
   var mapContainer = document.getElementById('map-canvas');
     mapContainer.style.width = '100%';
-    mapContainer.style.height = '600px';
+    mapContainer.style.height = '500px';
   var mapOptions = {
     zoom: 8,
     center: latlng,
@@ -31,17 +32,10 @@ $scope.codeAddress = function() {
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
        $scope.map.setCenter(results[0].geometry.location);
-
-      var map=$scope.map;
-      console.log("map",map);
-      var latlng = new google.maps.LatLng(-34.397, 150.644);
-
       var marker = new google.maps.Marker({
           map:  map,
-          position: latlng
-          //position: results[0].geometry.location
+          position: results[0].geometry.location
       });
-      console.log("marker",marker);
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }

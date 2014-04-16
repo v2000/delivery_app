@@ -1,7 +1,22 @@
 <center><h2>It is your map {{username}}</h2></center>
 
 
-	<header>Google maps positioning</header>
+<!--geolocation-->
+
+	<div id="panel">
+      <input id="address" type="textbox" value="Sydney, NSW">
+      <input type="button" value="Geocode" ng-click="codeAddress()">
+    </div>
+    <div id="map-canvas" ng-init="initialize()"></div>
+
+
+
+
+
+
+<!--with out geolocation-->
+
+<!--	<header>Google maps positioning</header>
 	<div class="hint">Click on a city name to view it on the map</div>
 	<div class="content">
 		<div id="cities">
@@ -10,7 +25,7 @@
 			</ul>
 		</div>
 		<div id="map" ng-init="initialize()"></div>
-	</div>
+	</div>-->
 
 	
 
