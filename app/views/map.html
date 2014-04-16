@@ -1,4 +1,18 @@
 <center><h2>It is your map {{username}}</h2></center>
 
-<pm-google-map> </pm-google-map>
+
+	<header>Google maps positioning</header>
+	<div class="hint">Click on a city name to view it on the map</div>
+	<div class="content">
+		<div id="cities">
+			<ul>
+				<li ng-repeat="city in cities" ng-click="showCity(city)">{{ city.city }}</li>
+			</ul>
+		</div>
+		<div id="map" ng-init="initialize()"></div>
+	</div>
+
+	
+
+
 
