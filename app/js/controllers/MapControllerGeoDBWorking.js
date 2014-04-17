@@ -32,6 +32,7 @@ $scope.codeAddress = function() {
     //$( "input:checkbox:checked" ).val();
     var aaa=$( "#address" ).val();
     console.log("address",aaa);
+    
     if (status == google.maps.GeocoderStatus.OK) {
        $scope.map.setCenter(results[0].geometry.location);
 
