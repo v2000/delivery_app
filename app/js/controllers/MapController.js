@@ -69,9 +69,9 @@ $scope.initialize = function() {
                             var latlng = new google.maps.LatLng(results[0].geometry.location.k, results[0].geometry.location.A);
                             var mapContainer = document.getElementById('map-canvas');
                               mapContainer.style.width = '100%';
-                              mapContainer.style.height = '600px';
+                              mapContainer.style.height = '500px';
                             var mapOptions = {
-                              zoom: 8,
+                              zoom: 10,
                               center: latlng,
                               mapTypeId: google.maps.MapTypeId.ROADMAP
                             }
@@ -80,16 +80,20 @@ $scope.initialize = function() {
 
                              var map=$scope.map;
                 console.log("map",map);
-                //var latlng = new google.maps.LatLng(-34.397, 150.644);
-
+                
+                //place marker to delivery address:
                  var marker = new google.maps.Marker({
                     map:  map,
                     //position: latlng
                     position: results[0].geometry.location
                 });
                 console.log("marker",marker);
-
-
+                //place marker there is your firm (Lilla Varvsgatan 14 Malmö):
+                var latlng = new google.maps.LatLng(55.6139,12.9764);
+                var firmmarker = new google.maps.Marker({
+                    map:  map,
+                    position: latlng
+                });
               } else {
                 alert('Geocode was not successful for the following reason: ' + status);
               }
