@@ -117,3 +117,16 @@ google.maps.event.addDomListener(window, 'load', $scope.initialize());
       console.log("results[0].geometry.location.k",results[0].geometry.location.k);
 
 */
+
+
+/*
+Через глобальную область видимости $rootScope:
+
+app.controller('oneCtrl', ['$scope','$rootScope', function($scope, $rootScope) {
+   $rootScope.var=1;
+}]);
+
+app.controller('twoCtrl', ['$scope','$rootScope', function($scope, $rootScope) {
+   console.log($rootScope.var);     //1
+}]);
+*/
