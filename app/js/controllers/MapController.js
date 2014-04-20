@@ -69,9 +69,9 @@ $scope.initialize = function() {
                             var latlng = new google.maps.LatLng(results[0].geometry.location.k, results[0].geometry.location.A);
                             var mapContainer = document.getElementById('map-canvas');
                               mapContainer.style.width = '100%';
-                              mapContainer.style.height = '500px';
+                              mapContainer.style.height = '400px';
                             var mapOptions = {
-                              zoom: 10,
+                              zoom: 8,
                               center: latlng,
                               mapTypeId: google.maps.MapTypeId.ROADMAP
                             }
