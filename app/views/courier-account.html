@@ -21,6 +21,7 @@
                     <th>Time</th>
                     <th>Details</th>
                     <th>Map</th>
+                    <th>Show map</th>
                     <th>Done</th>
                   </tr>
                 </thead>
@@ -35,6 +36,7 @@
                     <td><span>{{todayOrderData.deliveryTime}}</span></td>
                     <td><a href="courier-account/order/{{todayOrderData.OrderNummer}}">Details</a></td>
                     <td><a href="courier-account/map/{{todayOrderData.OrderNummer}}">Map</a></td>
+                    <td><input type="checkbox" ng-model="info.done"></td>
                     <td><span>{{todayOrderData.done}}</span></td>
                   </tr>
                  
