@@ -48,4 +48,27 @@ foodMeApp.controller('OrderDetailsController',
       $scope.orderData=todayOrderData[index];
       console.log("$scope.orderData", $scope.orderData);
      }); 
+
+    $scope.cancel = function() {
+      $('#textArea').val("");
+    }
+
+    $scope.save = function() {
+      //var saveInfo=$('#textArea').val();
+      //var carrentId=$routeParams.id;
+      //console.log("saveInfo",saveInfo);
+
+       $http.post('../server/saveInfo.php', {info : $scope.extraInfoo, id : $routeParams.id}).success(function(data){
+
+                                            
+        $scope.myInfoo = data;
+        //console.log("saveInfoHTTP",$scope.saveInfo);
+        console.log("$scope.myInfoo",$scope.myInfoo);
+      });
+    }
   });
+
+
+
+
+
