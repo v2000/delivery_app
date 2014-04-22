@@ -23,7 +23,7 @@ $pass = "";
 $myPDO = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8",$user,$pass);
 
 //$sql = "SELECT type FROM characteristictype";
-$sql = "SELECT ID, OrderNummer, prodyctName, quontity, deliveryAddress, deliveryTime, optional, done FROM wp_order_details WHERE OrderNummer=33";
+$sql = "SELECT ID, OrderNummer, prodyctName, quontity, deliveryAddress, deliveryTime, done FROM wp_order_details WHERE OrderNummer=33";
                 
 
 

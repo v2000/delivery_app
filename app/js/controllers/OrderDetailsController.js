@@ -33,9 +33,10 @@ foodMeApp.controller('OrderDetailsController',
           prodyctName:$scope.todayOrderData[i].prodyctName, quontity:$scope.todayOrderData[i].quontity,
           deliveryTime:$scope.todayOrderData[i].deliveryTime,
           deliveryAddress:$scope.todayOrderData[i].deliveryAddress, 
-          optional:$scope.todayOrderData[i].optional, done:$scope.todayOrderData[i].done});
+          extraInfo:$scope.todayOrderData[i].extraInfo,
+          done:$scope.todayOrderData[i].done,
+          doneTime:$scope.todayOrderData[i].doneTime});
       };
-
 
       for (var i = 0; i < todayOrderData.length; i++) {
         console.log("QQQ",todayOrderData[i]);
@@ -60,7 +61,7 @@ foodMeApp.controller('OrderDetailsController',
       //console.log("saveInfo",saveInfo);
       console.log($scope.saveInfo);
 
-       $http.post('../server/saveInfo.php', {info : $scope.saveInfo.extraInfo, id : $routeParams.id}).success(function(data){
+       $http.post('../server/saveInfo.php', {info : $scope.saveInfo.extraInfo, done : $scope.saveInfo.done, id : $routeParams.id}).success(function(data){
 
                                             
         $scope.myInfoo = data;
