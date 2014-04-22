@@ -58,5 +58,25 @@ quontity: "3"
         $http.post('../server/profile.php', dataToServer);
       };
     });*/
+
+$scope.showMap = function() {
+     
+   
+    console.log("showMap showMap showMap");
+
+    $location.path("/show-map");
+
+ /*$routeProvider. when($location('/showMap'), {
+        controller: 'ShowMapController',
+        templateUrl: 'views/showMap.html'
+      });*/
+
+}
+
+
+
+
+
+
   });
 

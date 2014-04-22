@@ -30,9 +30,9 @@ foodMeApp.config(function ($routeProvider, $locationProvider) {
         controller: 'OrderDetailsController',
         templateUrl: 'views/order-details.html'
       }).*/
-        when('/map', {
+        when('/show-map', {
         controller: 'MapController',
-        templateUrl: 'views/map.html'
+        templateUrl: 'views/show-map.html'
       }).
          when('/logout', {
         controller: 'LogoutController',

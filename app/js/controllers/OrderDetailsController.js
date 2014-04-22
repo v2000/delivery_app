@@ -4,6 +4,7 @@ foodMeApp.controller('OrderDetailsController',
     function OrderDetailsController($scope, $http, $routeParams, UserService, $location, aService) {
     //$('.menu1').show();
     //$("html").removeAttr("id");
+    $scope.saveInfo={};
     console.log('OrderDetailsController');
   
     $http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(function(data){
@@ -57,8 +58,9 @@ foodMeApp.controller('OrderDetailsController',
       //var saveInfo=$('#textArea').val();
       //var carrentId=$routeParams.id;
       //console.log("saveInfo",saveInfo);
+      console.log($scope.saveInfo);
 
-       $http.post('../server/saveInfo.php', {info : $scope.extraInfoo, id : $routeParams.id}).success(function(data){
+       $http.post('../server/saveInfo.php', {info : $scope.saveInfo.extraInfo, id : $routeParams.id}).success(function(data){
 
                                             
         $scope.myInfoo = data;
