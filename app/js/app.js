@@ -6,10 +6,7 @@ foodMeApp.config(function ($routeProvider, $locationProvider) {
  $locationProvider.hashPrefix('!');
  $locationProvider.html5Mode(true);
  $routeProvider.
-   /*when('/', {
-        controller: 'LoginController',
-        templateUrl: 'views/login.html'
-      }).*/
+
     when('/login', {
         controller: 'LoginController',
         templateUrl: 'views/login.html'
@@ -31,8 +28,8 @@ foodMeApp.config(function ($routeProvider, $locationProvider) {
         templateUrl: 'views/order-details.html'
       }).*/
         when('/show-map', {
-        controller: 'MapController',
-        templateUrl: 'views/show-map.html'
+        controller: "ShowMapController",
+        templateUrl: "views/show-map.html"
       }).
          when('/logout', {
         controller: 'LogoutController',
