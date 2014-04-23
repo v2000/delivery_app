@@ -43,26 +43,30 @@
                   <div class="form-group">
                     <label for="textArea">Extra info:</label>
                     <div class="col-lg-10">
-                      <textarea class="form-control" rows="3" id="textArea" name="extraInfo" ng-model="saveInfo.extraInfo"></textarea>
+                      <textarea class="form-control" rows="3" id="textArea" name="extraInfo" ng-model="saveInfo.extraInfo">{{orderData.extraInfo}}</textarea>
                       <span class="help-block">Write extra info about this order.</span>
                     </div>
                   </div>
-                  
+
+                <br>
+
                   <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-12">
-                      <input type="checkbox" ng-model="saveInfo.done">
+                      <input type="checkbox" id="checkbox" ng-model="saveInfo.done" ng-true-value="Done" ng-false-value="No">
                       <span>Done</span>
                     </div>
 
                     <div class="form-group">
-                      <label for="inputPassword">Done time: {{orderData.doneTime}}</label>             
+                      <label id="data" for="inputPassword">Done time: {{orderData.doneTime}}</label>             
                     </div>
                   </div>
              <br>
                   <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-12">
-                      <button class="btn btn-default" ng-click="cancel()">Cancel</button>
-                      <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+                        <div class="delete">
+                          <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+                          <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+                        </div>
                     </div>
                   </div>
                 </fieldset>

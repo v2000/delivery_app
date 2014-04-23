@@ -49,6 +49,12 @@ foodMeApp.controller('OrderDetailsController',
       console.log("index", index);
       $scope.orderData=todayOrderData[index];
       console.log("$scope.orderData", $scope.orderData);
+
+
+
+
+      $("#textArea").val($scope.orderData.extraInfo);
+      $("#checkbox").val($scope.orderData.extraInfo);
      }); 
 
     $scope.cancel = function() {
@@ -56,18 +62,19 @@ foodMeApp.controller('OrderDetailsController',
     }
 
     $scope.save = function() {
+       $('.delete').remove();
+
       //var saveInfo=$('#textArea').val();
       //var carrentId=$routeParams.id;
       //console.log("saveInfo",saveInfo);
       console.log($scope.saveInfo);
-
-       $http.post('../server/saveInfo.php', {info : $scope.saveInfo.extraInfo, done : $scope.saveInfo.done, id : $routeParams.id}).success(function(data){
-
-                                            
-        $scope.myInfoo = data;
-        //console.log("saveInfoHTTP",$scope.saveInfo);
-        console.log("$scope.myInfoo",$scope.myInfoo);
+      var carrentData=new Date();
+      console.log(carrentData);
+       $http.post('../server/saveInfo.php', {info : $scope.saveInfo.extraInfo, done : $scope.saveInfo.done, data:carrentData, id : $routeParams.id}).success(function(data){
       });
+     
+       
+
     }
   });
 
