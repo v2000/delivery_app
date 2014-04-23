@@ -5,7 +5,7 @@ $userid = $_SESSION['LoginHandlerCurrentUserId'];
 // Add the property DBH
 // (an instance of PDO)
 $host = "localhost";
-$dbname = "myfoodmedb";
+$dbname = "woodelivery";
 $user = "root";
 $pass = "";
 
@@ -23,7 +23,7 @@ $pass = "";
 $myPDO = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8",$user,$pass);
 
 //$sql = "SELECT type FROM characteristictype";
-$sql = "SELECT ID, OrderNummer, prodyctName, quontity, deliveryAddress, deliveryTime, done FROM wp_order_details WHERE OrderNummer=33";
+$sql = "SELECT ID, orderNumber, productName, quantity, deliveryAddress, deliveryTime, done FROM wp_today_orders WHERE orderNumber=33";
                 
 
 

@@ -27,18 +27,18 @@ $http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(functi
             var index=0;
 
             for (var i = 0; i < $scope.todayOrderData.length; i++) {
-              todayOrderData.push({ID:$scope.todayOrderData[i].ID, OrderNummer:$scope.todayOrderData[i].OrderNummer, 
-                prodyctName:$scope.todayOrderData[i].prodyctName, quontity:$scope.todayOrderData[i].quontity,
+              todayOrderData.push({ID:$scope.todayOrderData[i].ID, orderNumber:$scope.todayOrderData[i].orderNumber, 
+                productName:$scope.todayOrderData[i].productName, quantity:$scope.todayOrderData[i].quantity,
                 deliveryTime:$scope.todayOrderData[i].deliveryTime,
                 deliveryAddress:$scope.todayOrderData[i].deliveryAddress, 
-                optional:$scope.todayOrderData[i].optional, done:$scope.todayOrderData[i].done});
+                done:$scope.todayOrderData[i].done});
             };
 
 
             for (var i = 0; i < todayOrderData.length; i++) {
               console.log("QQQ",todayOrderData[i]);
 
-              if (todayOrderData[i].OrderNummer===orderNumber){
+              if (todayOrderData[i].orderNumber===orderNumber){
                 index=i;
               }
 

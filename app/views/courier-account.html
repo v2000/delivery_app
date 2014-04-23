@@ -16,7 +16,7 @@
                     <th>#</th>
                     <th>Order number</th>
                     <th>Product name</th>
-                    <th>Quontity</th>
+                    <th>Quantity</th>
                     <th>Address</th>
                     <th>Time</th>
                     <th>Details</th>
@@ -29,13 +29,13 @@
 
                   <tr ng-repeat="todayOrderData in todayOrderData" type="none">
                     <td ><span>{{todayOrderData.ID}}</span></td>  
-                    <td><span>{{todayOrderData.OrderNummer}}</span></td>
-                    <td><span>{{todayOrderData.prodyctName}}</span></td>
-                    <td><span>{{todayOrderData.quontity}}</span></td>
+                    <td><span>{{todayOrderData.orderNumber}}</span></td>
+                    <td><span>{{todayOrderData.productName}}</span></td>
+                    <td><span>{{todayOrderData.quantity}}</span></td>
                     <td><span>{{todayOrderData.deliveryAddress}}</span></td>
                     <td><span>{{todayOrderData.deliveryTime}}</span></td>
-                    <td><a href="courier-account/order/{{todayOrderData.OrderNummer}}">Details</a></td>
-                    <td><a href="courier-account/map/{{todayOrderData.OrderNummer}}">Map</a></td>
+                    <td><a href="courier-account/order/{{todayOrderData.orderNumber}}">Details</a></td>
+                    <td><a href="courier-account/map/{{todayOrderData.orderNumber}}">Map</a></td>
                     <td><input type="checkbox" ng-model="info.done"></td>
                     <td><span>{{todayOrderData.done}}</span></td>
                   </tr>

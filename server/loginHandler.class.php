@@ -8,7 +8,7 @@ class LoginHandler {
     // change these if you want
   private function initialSetUpMySql(
     $host = "localhost",
-    $dbname = "myfoodmedb",
+    $dbname = "woodelivery",
     $dbusername = "root",
     $dbpassword = "",
     $usertablename = "wp_couriers"

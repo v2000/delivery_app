@@ -28,8 +28,8 @@ foodMeApp.controller('OrderDetailsController',
       var index=0;
 
       for (var i = 0; i < $scope.todayOrderData.length; i++) {
-        todayOrderData.push({ID:$scope.todayOrderData[i].ID, OrderNummer:$scope.todayOrderData[i].OrderNummer, 
-          prodyctName:$scope.todayOrderData[i].prodyctName, quontity:$scope.todayOrderData[i].quontity,
+        todayOrderData.push({ID:$scope.todayOrderData[i].ID, orderNumber:$scope.todayOrderData[i].orderNumber, 
+          productName:$scope.todayOrderData[i].productName, quantity:$scope.todayOrderData[i].quantity,
           deliveryTime:$scope.todayOrderData[i].deliveryTime,
           deliveryAddress:$scope.todayOrderData[i].deliveryAddress, 
           extraInfo:$scope.todayOrderData[i].extraInfo,
@@ -40,7 +40,7 @@ foodMeApp.controller('OrderDetailsController',
       for (var i = 0; i < todayOrderData.length; i++) {
         console.log("QQQ",todayOrderData[i]);
 
-        if (todayOrderData[i].OrderNummer===orderNumber){
+        if (todayOrderData[i].orderNumber===orderNumber){
           index=i;
         }
 
@@ -58,7 +58,6 @@ foodMeApp.controller('OrderDetailsController',
         $('.delete').remove();
         $('#infotext').append($scope.orderData.extraInfo);
       }
-
       
       //$("#textArea").val($scope.orderData.extraInfo);
       //$("#checkbox").val($scope.orderData.extraInfo);
