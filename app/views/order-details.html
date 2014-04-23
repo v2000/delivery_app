@@ -41,10 +41,12 @@
               <br>
 
                   <div class="form-group">
-                    <label for="textArea">Extra info:</label>
+                    <label for="textArea" id="infotext">Extra info:</label>
                     <div class="col-lg-10">
-                      <textarea class="form-control" rows="3" id="textArea" name="extraInfo" ng-model="saveInfo.extraInfo">{{orderData.extraInfo}}</textarea>
-                      <span class="help-block">Write extra info about this order.</span>
+                      <div class="delete">
+                        <textarea class="form-control" rows="3" id="textArea" name="extraInfo" ng-model="saveInfo.extraInfo">{{orderData.extraInfo}}</textarea>
+                        <span class="help-block">Write extra info about this order.</span>
+                      </div>
                     </div>
                   </div>
 
@@ -52,8 +54,10 @@
 
                   <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-12">
-                      <input type="checkbox" id="checkbox" ng-model="saveInfo.done" ng-true-value="Done" ng-false-value="No">
-                      <span>Done</span>
+                        <div class="delete">
+                          <input type="checkbox" id="checkbox" ng-model="saveInfo.done" ng-true-value="Done" ng-false-value="No">
+                          <span>Done</span>
+                        </div>
                     </div>
 
                     <div class="form-group">
