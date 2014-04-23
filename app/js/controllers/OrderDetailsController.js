@@ -2,8 +2,7 @@
 
 foodMeApp.controller('OrderDetailsController',
     function OrderDetailsController($scope, $http, $routeParams, UserService, $location, aService) {
-    //$('.menu1').show();
-    //$("html").removeAttr("id");
+
     $scope.saveInfo={};
     console.log('OrderDetailsController');
   
@@ -57,34 +56,54 @@ foodMeApp.controller('OrderDetailsController',
 
       if ($scope.orderData.done=="Done") {
         $('.delete').remove();
+        $('#infotext').append($scope.orderData.extraInfo);
       }
 
-      $('#infotext').append($scope.orderData.extraInfo);
-      $("#textArea").val($scope.orderData.extraInfo);
+      
+      //$("#textArea").val($scope.orderData.extraInfo);
       //$("#checkbox").val($scope.orderData.extraInfo);
      }); 
+
 
     $scope.cancel = function() {
       $('#textArea').val("");
     }
 
-    $scope.save = function() {
-       $('.delete').remove();
-       $('#infotext').append($scope.orderData.extraInfo);
-       console.log("APPPPPENDDDDDD",$scope.orderData.extraInfo);
-      //var saveInfo=$('#textArea').val();
-      //var carrentId=$routeParams.id;
-      //console.log("saveInfo",saveInfo);
-      console.log($scope.saveInfo);
-      var carrentData=new Date();
-      console.log(carrentData);
-      $scope.saveInfo.done="Done";
-       $http.post('../server/saveInfo.php', {info : $scope.saveInfo.extraInfo, done : $scope.saveInfo.done, data:carrentData, id : $routeParams.id}).success(function(data){
-      });
-     
-       
 
-    }
+    $scope.save = function() {
+
+      if ($scope.saveInfo.done==="Done") {
+      //remove:
+      //1. textarea,
+      //2.next text:"Write extra info about this order.",
+      //3.checkbox and word "Done"
+      //4.buttons
+       //$('.delete').remove();
+       //$('#infotext').append($('#textArea').val());
+      
+    
+      var carrentData=new Date();
+      
+       $http.post('../server/saveInfo.php', {info : $scope.saveInfo.extraInfo, done : $scope.saveInfo.done, data:carrentData, id : $routeParams.id}).success(function(data){
+      location.reload(true);
+      alert("Data save");
+      
+      });
+      }
+
+      else
+      {
+
+        $scope.saveInfo.done="No";
+        $http.post('../server/saveInfo.php', {info : $scope.saveInfo.extraInfo, done : $scope.saveInfo.done, id : $routeParams.id}).success(function(data){
+      alert("Info save");
+      });
+      }
+     
+    }//finish $scope.save
+
+
+
   });
 
 
