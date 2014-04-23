@@ -14,7 +14,7 @@
   //$num=66;
   
   $db = new PDO('mysql:host=localhost;dbname=myfoodmedb','root','');
-  $rows = $db->exec("UPDATE wp_order_details SET extraInfo='".$data['info']."', done='".$data['done']."', doneTime='".$data['info']."' WHERE OrderNummer='".$data['id']."'");
+  $rows = $db->exec("UPDATE wp_order_details SET extraInfo='".$data['info']."', done='".$data['done']."', doneTime='".$data['data']."' WHERE OrderNummer='".$data['id']."'");
   echo("AAAAAAAAAAAAAAAAA");
 /*}
 catch(PDOException $e)
