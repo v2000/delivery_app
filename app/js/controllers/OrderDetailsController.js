@@ -28,8 +28,10 @@ foodMeApp.controller('OrderDetailsController',
       var index=0;
 
       for (var i = 0; i < $scope.todayOrderData.length; i++) {
-        todayOrderData.push({ID:$scope.todayOrderData[i].ID, orderNumber:$scope.todayOrderData[i].orderNumber, 
-          productName:$scope.todayOrderData[i].productName, quantity:$scope.todayOrderData[i].quantity,
+        todayOrderData.push({ID:$scope.todayOrderData[i].ID, 
+          orderNumber:$scope.todayOrderData[i].orderNumber, 
+          productName:$scope.todayOrderData[i].productName, 
+          quantity:$scope.todayOrderData[i].quantity,
           deliveryTime:$scope.todayOrderData[i].deliveryTime,
           deliveryAddress:$scope.todayOrderData[i].deliveryAddress, 
           extraInfo:$scope.todayOrderData[i].extraInfo,
@@ -56,10 +58,11 @@ foodMeApp.controller('OrderDetailsController',
 
       if ($scope.orderData.done=="Done") {
         $('.delete').remove();
-        $('#infotext').append($scope.orderData.extraInfo);
+        $('#infotext').val($scope.orderData.extraInfo);
+
       }
       
-      //$("#textArea").val($scope.orderData.extraInfo);
+      $("#textArea").val($scope.orderData.extraInfo);
       //$("#checkbox").val($scope.orderData.extraInfo);
      }); 
 
@@ -82,6 +85,9 @@ foodMeApp.controller('OrderDetailsController',
       
     
       var carrentData=new Date();
+      if ($scope.saveInfo.extraInfo==="") {
+        $scope.saveInfo.extraInfo= $('#infotext').val();
+      }                                        
       
        $http.post('../server/saveInfo.php', {info : $scope.saveInfo.extraInfo, done : $scope.saveInfo.done, data:carrentData, id : $routeParams.id}).success(function(data){
       location.reload(true);

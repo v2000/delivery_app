@@ -3,6 +3,10 @@
 foodMeApp.controller('MapController', 
     function MapController($scope, $http, $routeParams, UserService, $location, aService) {
 $scope.username;
+$scope.map;
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+var map;
 
 $http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(function(data){
 
@@ -48,59 +52,51 @@ $http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(functi
             $scope.deliveryAddress=$scope.orderData.deliveryAddress;
  
 
-$scope.map;
-var geocoder;
+
+
 
 
 $scope.initialize = function() {
-
-  geocoder = new google.maps.Geocoder();
-
-
-          //geocoder.geocode( { 'address': $scope.deliveryAddress}, function(results, status) {
-            console.log("$scope.DELIVERYADRESS",$scope.deliveryAddress);
-            geocoder.geocode( { 'address': $scope.deliveryAddress}, function(results, status) {
-              
-              if (status == google.maps.GeocoderStatus.OK) {
-                 console.log("results[0].geometry.location",results[0].geometry.location);
-                 
-
-               
-                            var latlng = new google.maps.LatLng(results[0].geometry.location.k, results[0].geometry.location.A);
-                            var mapContainer = document.getElementById('map-canvas');
+ directionsDisplay = new google.maps.DirectionsRenderer();
+  var coord = new google.maps.LatLng(55.648394, 12.613668999999959);
+  var mapContainer = document.getElementById('map-canvas');
                               mapContainer.style.width = '100%';
                               mapContainer.style.height = '400px';
-                            var mapOptions = {
-                              zoom: 8,
-                              center: latlng,
-                              mapTypeId: google.maps.MapTypeId.ROADMAP
-                            }
-                             $scope.map = new google.maps.Map(mapContainer, mapOptions);
-                             $scope.map.setCenter(results[0].geometry.location);
-
-                             var map=$scope.map;
-                console.log("map",map);
-                
-                //place marker to delivery address:
-                 var marker = new google.maps.Marker({
-                    map:  map,
-                    //position: latlng
-                    position: results[0].geometry.location
-                });
-                console.log("marker",marker);
-                //place marker there is your firm (Lilla Varvsgatan 14 Malmö):
-                var latlng = new google.maps.LatLng(55.6139,12.9764);
-                var firmmarker = new google.maps.Marker({
-                    map:  map,
-                    position: latlng
-                });
-              } else {
-                alert('Geocode was not successful for the following reason: ' + status);
-              }
-            });
+  var mapOptions = {
+    zoom:7,
+    center: coord,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+  $scope.map = new google.maps.Map(mapContainer, mapOptions);
   
+  directionsDisplay.setMap($scope.map);
+
+  var request = {
+      origin:"Amagerbrogade 221, 2300 København, Danmark",
+      destination:$scope.deliveryAddress,
+      travelMode: google.maps.TravelMode.DRIVING
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+      computeTotalDistance(directionsDisplay.directions);
+    }
+  });
 }
- 
+
+
+ function computeTotalDistance(result) {
+
+    var total = 0;
+    var myroute = result.routes[0];
+    for (i = 0; i < myroute.legs.length; i++) {
+      total += myroute.legs[i].distance.value;
+    }
+    total = total / 1000.
+    console.log("total",total);
+    document.getElementById("total").innerHTML = total + " km";
+  }   
+
 google.maps.event.addDomListener(window, 'load', $scope.initialize());
 //*************************************************************************
     }); //$http.get('../server/getTodayOrdersData.php'
