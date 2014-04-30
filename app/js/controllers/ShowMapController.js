@@ -39,7 +39,7 @@ $http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(functi
             $scope.todayOrderData=data;
             console.log('get orders details', $scope.todayOrderData);
 
-            var todayOrderData=[];
+            var todayOrderData=["Vintergatan 21 21120 Malmö"];
             var index=0;
 
             for (var i = 0; i < $scope.todayOrderData.length; i++) {
@@ -84,20 +84,49 @@ $scope.calcRoute = function() {
 
   var start = $scope.startAddress.deliveryAddress;
   var end = $scope.endAddress.deliveryAddress;
+  var waypts = [];
 
-  console.log("$scope.startAddress.deliveryAddress",$scope.startAddress.deliveryAddress);
-  console.log("$scope.endtAddress.deliveryAddress",$scope.endAddress.deliveryAddress);
-  
+
+  var wpAdrdresses=[];
+  for (var i = 0; i < ($rootScope.addresses).length; i++) {
+    if ($rootScope.addresses[i].deliveryAddress===start ){
+console.log("start");
+    }else 
+      if ($rootScope.addresses[i].deliveryAddress===end ){console.log("end");}
+        else{
+wpAdrdresses.push($rootScope.addresses[i].deliveryAddress);
+    }
+    console.log("wpAdrdresses",wpAdrdresses);
+
+}
+
+
+
+
+
+for (var i = 0; i < wpAdrdresses.length; i++) {
+waypts.push({
+          location:wpAdrdresses[i],
+          stopover:true});
+    }
+console.log("waypts", waypts);
+/*waypts = [{
+          location:"Vintergatan 21 21120 Malmö",
+          stopover:true}];
+console.log("waypts", waypts); */ 
   var request = {
       origin:start,
       destination:end,
+      waypoints: waypts,
+      optimizeWaypoints: true,
       travelMode: google.maps.TravelMode.DRIVING
   };
-  console.log("request request request request request request request request",request);
+  console.log("request", request);
   directionsService.route(request, function(response, status) {
+    console.log("status", status);
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
-      $scope.computeTotalDistance(directionsDisplay.directions);
+     console.log("response", response);
     }
   });
 }

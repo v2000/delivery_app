@@ -2,7 +2,7 @@
 
 foodMeApp.controller('CourierAccountController',
     function CourierAccountController($rootScope, $scope, $http, UserService, $location, aService) {
-  
+
         $http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(function(data){
 
         if(data === 'false'){
@@ -41,13 +41,14 @@ foodMeApp.controller('CourierAccountController',
 
     $rootScope.addresses = [];
     angular.forEach($scope.todayOrderData, function(todo) {
+
       console.log("todo.isChecked todo.isChecked todo.isChecked",todo.isChecked);
       if (todo.isChecked===true) {
          $rootScope.addresses.push(todo);
          console.log("$rootScope.addresses",$rootScope.addresses);
        }
     });
-    
+
     if ($scope.showFirmAddress.isChecked){
       var firm = new Object();
       firm.deliveryAddress = "Amagerbrogade 221, 2300 København, Danmark";
@@ -80,13 +81,6 @@ foodMeApp.controller('CourierAccountController',
     console.log("$scope.todos",$scope.todos);
     });*/
 
-    /*angular.forEach($rootScope.todayOrders, function(s) { 
-      if ($rootScope.todayOrders.isChecked=== true) {
-        $rootScope.addresses.push($rootScope.todayOrders.address);
-        console.log("$rootScope.todayOrders",$rootScope.todayOrders);
-      }
-    });*/
-    //return selected.length ? selected.join(', ') : 'Not set';
   }; 
 /*
  $scope.archive = function() {
