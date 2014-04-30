@@ -31,10 +31,8 @@ foodMeApp.controller('CourierAccountController',
           isChecked:false};
       };
 
-
       for (var i = 0; i < $scope.todayOrderData.length; i++) {
         console.log("QQQ",$scope.todayOrderData[i]);
-
       };
       });
      
@@ -49,6 +47,13 @@ foodMeApp.controller('CourierAccountController',
          console.log("$rootScope.addresses",$rootScope.addresses);
        }
     });
+    
+    if ($scope.showFirmAddress.isChecked){
+      var firm = new Object();
+      firm.deliveryAddress = "Amagerbrogade 221, 2300 København, Danmark";
+
+       $rootScope.addresses.unshift(firm);
+    }
 
     if ($rootScope.addresses.length===0) {
       alert("You must select at least 2 up to 9 addresses");
@@ -97,18 +102,6 @@ $scope.showMap = function() {
     console.log("showMap showMap showMap");
 
     $location.path("/show-map");
-
- /*$routeProvider. when($location('/showMap'), {
-        controller: 'ShowMapController',
-        templateUrl: 'views/showMap.html'
-      });*/
-
 }
-
-
-
-
-
-
-  });
+});
 
