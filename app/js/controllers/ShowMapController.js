@@ -1,8 +1,25 @@
 'use strict';
 
 foodMeApp.controller('ShowMapController', 
-    function ShowMapController($scope, $http, $routeParams, UserService, $location, aService) {
+    function ShowMapController($rootScope, $scope, $http, $routeParams, UserService, $location, aService) {
+
 $scope.username;
+$scope.map;
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+var map;
+
+
+console.log("ShowMapController $rootScope.addresses[0].deliveryAddress",$rootScope.addresses[0].deliveryAddress);
+console.log("AAAAAAAShowMapController $rootScope.addresses",$rootScope.addresses);
+
+for (var i = 0; i < $rootScope.addresses.length; i++) {
+$scope.addresses[i]=$rootScope.addresses[i];
+}
+console.log("$scope.addresses",$scope.addresses);
+
+
+
 
 $http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(function(data){
 
@@ -46,59 +63,48 @@ $http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(functi
             $scope.orderData=todayOrderData[index];
             //Adress is: $scope.orderData.deliveryAddress
             $scope.deliveryAddress=$scope.orderData.deliveryAddress;
- 
-
-$scope.map;
-var geocoder;
-
 
 $scope.initialize = function() {
-
-  geocoder = new google.maps.Geocoder();
-          
-            geocoder.geocode( { 'address': $scope.deliveryAddress}, function(results, status) {
-              
-              if (status == google.maps.GeocoderStatus.OK) {
-                 console.log("results[0].geometry.location",results[0].geometry.location);
-                 
-
-                            var latlng = new google.maps.LatLng(results[0].geometry.location.k, results[0].geometry.location.A);
-                            var mapContainer = document.getElementById('map-canvas');
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  var coord = new google.maps.LatLng(55.648394, 12.613668999999959);
+  var mapContainer = document.getElementById('map-canvas');
                               mapContainer.style.width = '100%';
                               mapContainer.style.height = '400px';
-                            var mapOptions = {
-                              zoom: 8,
-                              center: latlng,
-                              mapTypeId: google.maps.MapTypeId.ROADMAP
-                            }
-                             $scope.map = new google.maps.Map(mapContainer, mapOptions);
-                             $scope.map.setCenter(results[0].geometry.location);
+  var mapOptions = {
+    zoom:7,
+    center: coord,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+   $scope.map = new google.maps.Map(mapContainer, mapOptions);
+   directionsDisplay.setMap($scope.map);
+}
 
-                             var map=$scope.map;
-                console.log("map",map);
-                
-                //place marker to delivery address:
-                 var marker = new google.maps.Marker({
-                    map:  map,
-                    //position: latlng
-                    position: results[0].geometry.location
-                });
-
-                //place marker there is your firm (Lilla Varvsgatan 14 Malmö):
-                //var latlng = new google.maps.LatLng(55.6139,12.9764);
-                //var firmmarker = new google.maps.Marker({
-                //    map:  map,
-                //    position: latlng
-                //});
-              } else {
-                alert('Geocode was not successful for the following reason: ' + status);
-              }
-            });
+$scope.calcRoute = function() {
   
+  console.log("calcRoute calcRoute calcRoute calcRoute calcRoute calcRoute calcRoute");
+  //var start = document.getElementById('startoption').value;
+  //var end = document.getElementById('endoption').value;
+  var start = $scope.startAddress.deliveryAddress;
+  var end = $scope.endAddress.deliveryAddress;
+
+  console.log("$scope.startAddress.deliveryAddress",$scope.startAddress.deliveryAddress);
+  console.log("$scope.endtAddress.deliveryAddress",$scope.endAddress.deliveryAddress);
+  
+  var request = {
+      origin:start,
+      destination:end,
+      travelMode: google.maps.TravelMode.DRIVING
+  };
+  console.log("request request request request request request request request",request);
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+      $scope.computeTotalDistance(directionsDisplay.directions);
+    }
+  });
 }
 
 $scope.computeTotalDistance = function(result) {
-
     var total = 0;
     var myroute = result.routes[0];
     for (i = 0; i < myroute.legs.length; i++) {
@@ -108,6 +114,7 @@ $scope.computeTotalDistance = function(result) {
     console.log("total",total);
     document.getElementById("total").innerHTML = total + " km";
   }   
+
 
 google.maps.event.addDomListener(window, 'load', $scope.initialize());
 //*************************************************************************
@@ -157,3 +164,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 */
 
 
+/*
+<select id="start" ng-model="myList" ng-options="myList.Address for address in addresses">
+          <option value="">-- choose address --</option>
+        </select>
+*/

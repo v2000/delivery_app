@@ -3,38 +3,46 @@
 
 <!--geolocation-->
 
-	<!--<div id="panel">
+  <!--<div id="panel">
       <input id="address" type="textbox" value="Sydney, NSW">
       <input type="button" value="Geocode" ng-click="codeAddress()">
     </div>-->
-    <div>Your firm is located at "Lilla Varvsgatan 14, 21115 Malmö"</div>
-    <div><p>Total distance: <span id="total"></span></p></div>
+    <div>Your firm is located at "Amagerbrogade 221, 2300 København, Danmark"</div>
+    <!--<div><p>Total distance: <span id="total"></span></p></div>-->
 
 
 
 <!--*************************************************************-->
 
-	<div id="panel">
+  <div id="panel">
     <b>Start: </b>
-    <select id="start" onchange="calcRoute();">
-      <option value="malmö">Malmö</option>
+        <select id="start" ng-model="startAddress" ng-options="address.deliveryAddress for address in addresses" ng-change="calcRoute()">
+          <option id="startoption" value="">-- choose address --</option>
+        </select>
+    <!-- <select id="start" ng-model="myList.startAddress" ng-change="calcRoute()">
+     <option value="malmö">Malmö</option>
       <option value="Lund Nordenvägen 7">Lund</option>
       <option value="vellinge">Vellinge</option>
 
-    </select>
+    </select>-->
     <b>End: </b>
-    <select id="end" onchange="calcRoute();">
+        <select id="end" ng-model="endAddress" ng-options="address.deliveryAddress for address in addresses" ng-change="calcRoute()">
+          <option id="endoption" value="">-- choose address --</option>
+        </select>
+    <!--<select id="end" ng-model="myList.endAddress" ng-change="calcRoute()">
       <option value="malmö">Malmö</option>
       <option value="Lund Nordenvägen 7">Lund</option>
       <option value="vellinge">Vellinge</option>
       
-    </select> 
+    </select>--> 
+    
+
+    </select>
     <p>Total distance: <span id="total"></span></p> 
     </div>
 
 
 <!--*************************************************************-->
-
 
 
 
@@ -47,18 +55,18 @@
 
 <!--with out geolocation-->
 
-<!--	<header>Google maps positioning</header>
-	<div class="hint">Click on a city name to view it on the map</div>
-	<div class="content">
-		<div id="cities">
-			<ul>
-				<li ng-repeat="city in cities" ng-click="showCity(city)">{{ city.city }}</li>
-			</ul>
-		</div>
-		<div id="map" ng-init="initialize()"></div>
-	</div>-->
+<!--  <header>Google maps positioning</header>
+  <div class="hint">Click on a city name to view it on the map</div>
+  <div class="content">
+    <div id="cities">
+      <ul>
+        <li ng-repeat="city in cities" ng-click="showCity(city)">{{ city.city }}</li>
+      </ul>
+    </div>
+    <div id="map" ng-init="initialize()"></div>
+  </div>-->
 
-	
+  
 
 
 

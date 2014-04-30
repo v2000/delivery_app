@@ -8,7 +8,7 @@
             <div class="page-header">
               <h1 id="tables">Your deliveries today:</h1>
             </div>
-<div><label>Show firm adress <input type="checkbox" id="checkbox" ng-model="showFirmAddress.firm" ng-true-value="ShowFirmAddress" ng-false-value="DoNotShowFirmAddress"></label></div>
+<div><label>Show firm adress <input type="checkbox" id="checkbox" ng-model="showFirmAddress.isChecked" ng-true-value="true" ng-false-value='false'></label></div>
 
             <div class="bs-component">
               <table class="table table-striped table-hover ">
@@ -39,8 +39,9 @@
                     <td><a href="courier-account/map/{{todayOrderData.orderNumber}}">Map</a></td>
                     <!--<td><input type="checkbox" ng-model="showMapInfo.show"></td>-->
 
-                        <td><input type="checkbox" ng-model="showMapInfo.done" ng-true-value="ShowDeliveryAddress" ng-false-value="DoNotShowDeliveryAddress"></td>
-
+                    <!--    <td><input type="checkbox" ng-model="showMapInfo.done" ng-true-value="ShowDeliveryAddress" ng-false-value="DoNotShowDeliveryAddress"></td>-->
+                     <td><input type="checkbox" ng-model="todayOrderData.isChecked" />
+                <span>{{todayOrderData.deliveryAddress}}</span></td>
 
                     <td><span>{{todayOrderData.done}}</span></td>
                   </tr>
@@ -59,12 +60,26 @@
 
 <span>{{showFirmAddress}}</span>
 <br>
-<span>AAAAAAAAAAAA{{showMapInfo}}</span>  
-
-    
-                        
-                
+       
                             
                   
                         
-                     
+                     todayOrders:
+     <div id="teamCheckboxList" class="checkboxList">
+      <div ng-repeat="todayOrder in todayOrders">
+        <label>
+                <input type="checkbox" ng-model="todayOrder.isChecked" />
+                <span>{{todayOrder.address}}</span>
+            </label>
+      </div>
+    </div>
+
+    <br />
+    State:
+    <div>
+      <div ng-repeat="todayOrder in todayOrders">
+        <span>{{todayOrder.address}}</span>&nbsp;
+        <span>{{todayOrder.isChecked}}</span><br />
+      </div>
+    </div>               
+            
