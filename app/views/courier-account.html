@@ -1,6 +1,5 @@
 <h3>Hello {{username}}</h3>
-<!-- Tables
-      ================================================== -->
+
       <div class="bs-docs-section">
 
         <div class="row">
@@ -37,10 +36,7 @@
                     <td><span>{{todayOrderData.deliveryTime}}</span></td>
                     <td><a href="courier-account/order/{{todayOrderData.orderNumber}}">Details</a></td>
                     <td><a href="courier-account/map/{{todayOrderData.orderNumber}}">Map</a></td>
-                    <!--<td><input type="checkbox" ng-model="showMapInfo.show"></td>-->
-
-                    <!--    <td><input type="checkbox" ng-model="showMapInfo.done" ng-true-value="ShowDeliveryAddress" ng-false-value="DoNotShowDeliveryAddress"></td>-->
-                     <td><input type="checkbox" ng-model="todayOrderData.isChecked" />
+                    <td><input type="checkbox" ng-model="todayOrderData.isChecked" />
                 <span>{{todayOrderData.deliveryAddress}}</span></td>
 
                     <td><span>{{todayOrderData.done}}</span></td>
@@ -60,26 +56,4 @@
 
 <span>{{showFirmAddress}}</span>
 <br>
-       
-                            
-                  
-                        
-                     todayOrders:
-     <div id="teamCheckboxList" class="checkboxList">
-      <div ng-repeat="todayOrder in todayOrders">
-        <label>
-                <input type="checkbox" ng-model="todayOrder.isChecked" />
-                <span>{{todayOrder.address}}</span>
-            </label>
-      </div>
-    </div>
-
-    <br />
-    State:
-    <div>
-      <div ng-repeat="todayOrder in todayOrders">
-        <span>{{todayOrder.address}}</span>&nbsp;
-        <span>{{todayOrder.isChecked}}</span><br />
-      </div>
-    </div>               
-            
+<span>{{todayOrderData}}</span>

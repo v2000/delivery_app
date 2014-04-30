@@ -1,73 +1,24 @@
 <center><h2>It is your map {{username}}</h2></center>
 
-
-<!--geolocation-->
-
-  <!--<div id="panel">
-      <input id="address" type="textbox" value="Sydney, NSW">
-      <input type="button" value="Geocode" ng-click="codeAddress()">
-    </div>-->
     <div>Your firm is located at "Amagerbrogade 221, 2300 København, Danmark"</div>
-    <!--<div><p>Total distance: <span id="total"></span></p></div>-->
-
-
-
-<!--*************************************************************-->
+   
 
   <div id="panel">
     <b>Start: </b>
         <select id="start" ng-model="startAddress" ng-options="address.deliveryAddress for address in addresses" >
           <option id="startoption" value="">-- choose address --</option>
         </select>
-    <!-- <select id="start" ng-model="myList.startAddress" ng-change="calcRoute()">
-     <option value="malmö">Malmö</option>
-      <option value="Lund Nordenvägen 7">Lund</option>
-      <option value="vellinge">Vellinge</option>
-
-    </select>-->
+   
     <b>End: </b>
         <select id="end" ng-model="endAddress" ng-options="address.deliveryAddress for address in addresses" >
           <option id="endoption" value="">-- choose address --</option>
         </select>
-    <!--<select id="end" ng-model="myList.endAddress" ng-change="calcRoute()">
-      <option value="malmö">Malmö</option>
-      <option value="Lund Nordenvägen 7">Lund</option>
-      <option value="vellinge">Vellinge</option>
-      
-    </select>--> 
     
-
     </select>
     <p>Total distance: <span id="total"></span></p> 
     <p> <button type="button" class="btn btn-primary" ng-click="calcRoute()">Show</button></p>
     </div>
 
 
-<!--*************************************************************-->
-
-
 
     <div id="map-canvas" ng-init="initialize()"></div>
-
-
-
-
-
-
-<!--with out geolocation-->
-
-<!--  <header>Google maps positioning</header>
-  <div class="hint">Click on a city name to view it on the map</div>
-  <div class="content">
-    <div id="cities">
-      <ul>
-        <li ng-repeat="city in cities" ng-click="showCity(city)">{{ city.city }}</li>
-      </ul>
-    </div>
-    <div id="map" ng-init="initialize()"></div>
-  </div>-->
-
-  
-
-
-
