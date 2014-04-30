@@ -49,7 +49,12 @@ foodMeApp.controller('CourierAccountController',
          console.log("$rootScope.addresses",$rootScope.addresses);
        }
     });
-    console.log("$rootScope.addresses[0].deliveryAddress",$rootScope.addresses[0].deliveryAddress);
+
+    if ($rootScope.addresses.length===0) {
+      alert("You must select at least 2 up to 9 addresses");
+       location.reload(true);
+    }
+    
   /*$scope.showStatus = function() {
     console.log("$scope.showStatus $scope.showStatus $scope.showStatus");
 
