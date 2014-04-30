@@ -16,7 +16,7 @@
 
   <div id="panel">
     <b>Start: </b>
-        <select id="start" ng-model="startAddress" ng-options="address.deliveryAddress for address in addresses" ng-change="calcRoute()">
+        <select id="start" ng-model="startAddress" ng-options="address.deliveryAddress for address in addresses" >
           <option id="startoption" value="">-- choose address --</option>
         </select>
     <!-- <select id="start" ng-model="myList.startAddress" ng-change="calcRoute()">
@@ -26,7 +26,7 @@
 
     </select>-->
     <b>End: </b>
-        <select id="end" ng-model="endAddress" ng-options="address.deliveryAddress for address in addresses" ng-change="calcRoute()">
+        <select id="end" ng-model="endAddress" ng-options="address.deliveryAddress for address in addresses" >
           <option id="endoption" value="">-- choose address --</option>
         </select>
     <!--<select id="end" ng-model="myList.endAddress" ng-change="calcRoute()">
@@ -39,6 +39,7 @@
 
     </select>
     <p>Total distance: <span id="total"></span></p> 
+    <p> <button type="button" class="btn btn-primary" ng-click="calcRoute()">Show</button></p>
     </div>
 
 

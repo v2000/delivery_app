@@ -9,7 +9,6 @@ var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var map;
 
-
 console.log("ShowMapController $rootScope.addresses[0].deliveryAddress",$rootScope.addresses[0].deliveryAddress);
 console.log("AAAAAAAShowMapController $rootScope.addresses",$rootScope.addresses);
 
@@ -82,8 +81,7 @@ $scope.initialize = function() {
 $scope.calcRoute = function() {
   
   console.log("calcRoute calcRoute calcRoute calcRoute calcRoute calcRoute calcRoute");
-  //var start = document.getElementById('startoption').value;
-  //var end = document.getElementById('endoption').value;
+
   var start = $scope.startAddress.deliveryAddress;
   var end = $scope.endAddress.deliveryAddress;
 
@@ -121,51 +119,3 @@ google.maps.event.addDomListener(window, 'load', $scope.initialize());
     }); //$http.get('../server/getTodayOrdersData.php'
   });//  $http.post('../server/main.php'
 });
-
-
-
-
-
-/*
-var directionsDisplay;
-var directionsService = new google.maps.DirectionsService();
-var map;
-
-function initialize() {
-  directionsDisplay = new google.maps.DirectionsRenderer();
-  var chicago = new google.maps.LatLng(41.850033, -87.6500523);
-  var mapOptions = {
-    zoom:7,
-    center: chicago
-  }
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  directionsDisplay.setMap(map);
-}
-
-function calcRoute() {
-  var start = document.getElementById('start').value;
-  var end = document.getElementById('end').value;
-  var request = {
-      origin:start,
-      destination:end,
-      travelMode: google.maps.TravelMode.DRIVING
-  };
-  directionsService.route(request, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-      computeTotalDistance(directionsDisplay.directions);
-    }
-  });
-}
-
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-*/
-
-
-/*
-<select id="start" ng-model="myList" ng-options="myList.Address for address in addresses">
-          <option value="">-- choose address --</option>
-        </select>
-*/
