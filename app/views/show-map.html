@@ -9,6 +9,35 @@
     </div>-->
     <div>Your firm is located at "Lilla Varvsgatan 14, 21115 Malmö"</div>
     <div><p>Total distance: <span id="total"></span></p></div>
+
+
+
+<!--*************************************************************-->
+
+	<div id="panel">
+    <b>Start: </b>
+    <select id="start" onchange="calcRoute();">
+      <option value="malmö">Malmö</option>
+      <option value="Lund Nordenvägen 7">Lund</option>
+      <option value="vellinge">Vellinge</option>
+
+    </select>
+    <b>End: </b>
+    <select id="end" onchange="calcRoute();">
+      <option value="malmö">Malmö</option>
+      <option value="Lund Nordenvägen 7">Lund</option>
+      <option value="vellinge">Vellinge</option>
+      
+    </select> 
+    <p>Total distance: <span id="total"></span></p> 
+    </div>
+
+
+<!--*************************************************************-->
+
+
+
+
     <div id="map-canvas" ng-init="initialize()"></div>
 
 
