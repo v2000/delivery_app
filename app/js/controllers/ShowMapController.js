@@ -18,8 +18,6 @@ $scope.addresses[i]=$rootScope.addresses[i];
 console.log("$scope.addresses",$scope.addresses);
 
 
-
-
 $http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(function(data){
 
         if(data === 'false'){
@@ -90,18 +88,14 @@ $scope.calcRoute = function() {
   var wpAdrdresses=[];
   for (var i = 0; i < ($rootScope.addresses).length; i++) {
     if ($rootScope.addresses[i].deliveryAddress===start ){
-console.log("start");
+    console.log("start");
     }else 
       if ($rootScope.addresses[i].deliveryAddress===end ){console.log("end");}
         else{
-wpAdrdresses.push($rootScope.addresses[i].deliveryAddress);
-    }
+          wpAdrdresses.push($rootScope.addresses[i].deliveryAddress);
+             }
     console.log("wpAdrdresses",wpAdrdresses);
-
-}
-
-
-
+    }
 
 
 for (var i = 0; i < wpAdrdresses.length; i++) {
@@ -110,10 +104,7 @@ waypts.push({
           stopover:true});
     }
 console.log("waypts", waypts);
-/*waypts = [{
-          location:"Vintergatan 21 21120 Malmö",
-          stopover:true}];
-console.log("waypts", waypts); */ 
+
   var request = {
       origin:start,
       destination:end,
@@ -127,6 +118,22 @@ console.log("waypts", waypts); */
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
      console.log("response", response);
+
+     var route = response.routes[0];
+      var summaryPanel = document.getElementById('directions_panel');
+      summaryPanel.innerHTML = '';
+      // For each route, display summary information.
+      for (var i = 0; i < route.legs.length; i++) {
+        console.log("route.legs[i].start_address",route.legs[i].start_address);
+        console.log("route.legs[i].end_address",route.legs[i].end_address);
+        console.log("route.legs[i].distance.text",route.legs[i].distance.text);
+
+        var routeSegment = i + 1;
+        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment + '</b><br>';
+        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+      }
     }
   });
 }
@@ -142,9 +149,7 @@ $scope.computeTotalDistance = function(result) {
     document.getElementById("total").innerHTML = total + " km";
   }   
 
-
 google.maps.event.addDomListener(window, 'load', $scope.initialize());
-//*************************************************************************
     }); //$http.get('../server/getTodayOrdersData.php'
   });//  $http.post('../server/main.php'
 });
