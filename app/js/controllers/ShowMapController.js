@@ -9,6 +9,8 @@ var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var map;
 
+
+
 console.log("ShowMapController $rootScope.addresses[0].deliveryAddress",$rootScope.addresses[0].deliveryAddress);
 console.log("AAAAAAAShowMapController $rootScope.addresses",$rootScope.addresses);
 
@@ -77,65 +79,68 @@ $scope.initialize = function() {
 }
 
 $scope.calcRoute = function() {
-  
+  if (typeof $scope.startAddress === 'undefined' || typeof $scope.endAddress === 'undefined') {
+  alert("Pleace, choose start and end address")
+} else {
   console.log("calcRoute calcRoute calcRoute calcRoute calcRoute calcRoute calcRoute");
 
-  var start = $scope.startAddress.deliveryAddress;
-  var end = $scope.endAddress.deliveryAddress;
-  var waypts = [];
+      var start = $scope.startAddress.deliveryAddress;
+      var end = $scope.endAddress.deliveryAddress;
+      var waypts = [];
+      
+      var wpAdrdresses=[];
+      for (var i = 0; i < ($rootScope.addresses).length; i++) {
+        if ($rootScope.addresses[i].deliveryAddress===start ){
+        console.log("start", $rootScope.addresses[i].deliveryAddress);
+        }else 
+          if ($rootScope.addresses[i].deliveryAddress===end ){
+            console.log("end",$rootScope.addresses[i].deliveryAddress);
+          }else{
+              wpAdrdresses.push($rootScope.addresses[i].deliveryAddress);
+                 }
+              console.log("wpAdrdresses",wpAdrdresses);
+              }
 
 
-  var wpAdrdresses=[];
-  for (var i = 0; i < ($rootScope.addresses).length; i++) {
-    if ($rootScope.addresses[i].deliveryAddress===start ){
-    console.log("start");
-    }else 
-      if ($rootScope.addresses[i].deliveryAddress===end ){console.log("end");}
-        else{
-          wpAdrdresses.push($rootScope.addresses[i].deliveryAddress);
-             }
-    console.log("wpAdrdresses",wpAdrdresses);
-    }
+      for (var i = 0; i < wpAdrdresses.length; i++) {
+      waypts.push({
+              location:wpAdrdresses[i],
+              stopover:true});
+        }
+      console.log("waypts", waypts);
 
+      var request = {
+          origin:start,
+          destination:end,
+          waypoints: waypts,
+          optimizeWaypoints: true,
+          travelMode: google.maps.TravelMode.DRIVING
+      };
+      console.log("request", request);
+      directionsService.route(request, function(response, status) {
+        console.log("status", status);
+        if (status == google.maps.DirectionsStatus.OK) {
+          directionsDisplay.setDirections(response);
+         console.log("response", response);
 
-for (var i = 0; i < wpAdrdresses.length; i++) {
-waypts.push({
-          location:wpAdrdresses[i],
-          stopover:true});
-    }
-console.log("waypts", waypts);
+         var route = response.routes[0];
+          var summaryPanel = document.getElementById('directions_panel');
+          summaryPanel.innerHTML = '';
+          // For each route, display summary information.
+          for (var i = 0; i < route.legs.length; i++) {
+            console.log("route.legs[i].start_address",route.legs[i].start_address);
+            console.log("route.legs[i].end_address",route.legs[i].end_address);
+            console.log("route.legs[i].distance.text",route.legs[i].distance.text);
 
-  var request = {
-      origin:start,
-      destination:end,
-      waypoints: waypts,
-      optimizeWaypoints: true,
-      travelMode: google.maps.TravelMode.DRIVING
-  };
-  console.log("request", request);
-  directionsService.route(request, function(response, status) {
-    console.log("status", status);
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-     console.log("response", response);
-
-     var route = response.routes[0];
-      var summaryPanel = document.getElementById('directions_panel');
-      summaryPanel.innerHTML = '';
-      // For each route, display summary information.
-      for (var i = 0; i < route.legs.length; i++) {
-        console.log("route.legs[i].start_address",route.legs[i].start_address);
-        console.log("route.legs[i].end_address",route.legs[i].end_address);
-        console.log("route.legs[i].distance.text",route.legs[i].distance.text);
-
-        var routeSegment = i + 1;
-        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment + '</b><br>';
-        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
-        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+            var routeSegment = i + 1;
+            summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment + '</b><br>';
+            summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+            summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+            summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+          }
       }
-    }
-  });
+    });
+  }
 }
 
 $scope.computeTotalDistance = function(result) {
