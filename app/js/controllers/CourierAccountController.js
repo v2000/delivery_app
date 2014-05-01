@@ -2,7 +2,7 @@
 
 foodMeApp.controller('CourierAccountController',
     function CourierAccountController($rootScope, $scope, $http, UserService, $location, aService) {
-
+$scope.showFirmAddress = false;
         $http.post('../server/main.php', {loginHandlerAction: "getuser"}).success(function(data){
 
         if(data === 'false'){
@@ -49,7 +49,7 @@ foodMeApp.controller('CourierAccountController',
        }
     });
 
-    if ($scope.showFirmAddress.isChecked){
+    if ($scope.showFirmAddress){
       var firm = new Object();
       firm.deliveryAddress = "Amagerbrogade 221, 2300 København, Danmark";
 
@@ -60,37 +60,9 @@ foodMeApp.controller('CourierAccountController',
       alert("You must select at least 2 up to 9 addresses");
        location.reload(true);
     }
-    
-  /*$scope.showStatus = function() {
-    console.log("$scope.showStatus $scope.showStatus $scope.showStatus");
-
-    var selected = [];
-     console.log("$rootScope.todayOrders",$rootScope.todayOrders);
-     console.log("$rootScope.todayOrders",$rootScope.todayOrders);
-
-    var oldTodos=$rootScope.addresses;
-    $scope.todos=[];
-
-    angular.forEach($rootScope.todayOrders, function(todo) {
-      console.log("todo.isChecked todo.isChecked todo.isChecked",todo.isChecked);
-      if (todo.isChecked===true) {
-
-         $scope.todos.push(todo);
-         console.log("$scope.todos",$scope.todos);
-       }
-    console.log("$scope.todos",$scope.todos);
-    });*/
 
   }; 
-/*
- $scope.archive = function() {
-    var oldTodos = $scope.todos;
-    $scope.todos = [];
-    angular.forEach(oldTodos, function(todo) {
-      if (!todo.done) $scope.todos.push(todo);
-    });
-  };
-*/
+
 $scope.showMap = function() {
     $scope.showStatus();
     console.log("showMap showMap showMap");
