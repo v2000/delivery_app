@@ -1,9 +1,28 @@
 <center><h2>It is your map {{username}}</h2></center>
 
     <div>Your firm is located at "Amagerbrogade 221, 2300 København, Danmark"</div>
+ 
    
+    <div style="margin:20px;border-width:2px;">
+        <b>Start: </b>
+        <select id="start" ng-model="startAddress" ng-options="address.deliveryAddress for address in addresses" >
+          <option id="startoption" value="">-- choose address --</option>
+        </select>
+   
+         <b>End: </b>
+        <select id="end" ng-model="endAddress" ng-options="address.deliveryAddress for address in addresses" >
+          <option id="endoption" value="">-- choose address --</option>
+        </select>
+    
+        <p>Total distance: <span id="total"></span></p> 
+        <p> <button type="button" class="btn btn-primary" ng-click="calcRoute()">Show</button></p>
+    </div>
+    <div id="directions_panel" style="margin:20px;background-color:#FFEE77;"></div>
 
-  <div id="panel">
+    <div id="map-canvas" ng-init="initialize()" style="float:left;width:70%;height:100%;"></div>
+    
+
+  <!--<div id="panel">
     <b>Start: </b>
         <select id="start" ng-model="startAddress" ng-options="address.deliveryAddress for address in addresses" >
           <option id="startoption" value="">-- choose address --</option>
@@ -21,4 +40,4 @@
 
 
 
-    <div id="map-canvas" ng-init="initialize()"></div>
+    <div id="map-canvas" ng-init="initialize()"></div>-->
